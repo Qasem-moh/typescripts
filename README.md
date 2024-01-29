@@ -14,3 +14,10 @@ TypeScript is JavaScripts with Syntax for types.
 
 do you like Typescript
 😊😊😊😊😊😊😊😊😊😊
+
+### install type script global in your laptop 'npm i -g typescript '
+### crete first file with extension .ts
+### compile ts to js _tsc name file .ts_
+
+<br/>
+how compiling to js?!!
