@@ -5,4 +5,4 @@ function addAll(...nums:number[]){
     return result;
 }
 
-console.log(addAll(1,2,3));
+console.log(addAll(1,2,3,10.5,+true));

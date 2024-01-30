@@ -95,3 +95,36 @@ console.log(greeting2); // Outputs: Hi !
 In the `greet` function, the `message` parameter is followed by the rest parameter `...names`. This allows you to provide a message followed by an arbitrary number of names.
 
 Rest parameters provide flexibility and allow you to work with functions that can handle different numbers of arguments without explicitly specifying all the parameters.
+***********************************
+## Type Annotations With Anonymous And Arrow Function
+In TypeScript, you can use type annotations with anonymous and arrow functions to explicitly specify the types of parameters and the return value. Here are examples of both cases:
+
+1. **Anonymous Function:**
+   ```typescript
+   let add: (x: number, y: number) => number = function (x, y) {
+     return x + y;
+   };
+
+   // Usage
+   let result = add(10, 20);
+   console.log(result); // Outputs: 30
+   ```
+
+   In this example, `add` is a variable with a function type annotation `(x: number, y: number) => number`. This indicates that it's a function taking two parameters of type `number` and returning a value of type `number`. The function assigned to `add` adheres to this type annotation.
+
+2. **Arrow Function:**
+   ```typescript
+   let multiply: (a: number, b: number) => number = (a, b) => {
+     return a * b;
+   };
+
+   // Usage
+   let product = multiply(5, 6);
+   console.log(product); // Outputs: 30
+   ```
+
+   Similar to the anonymous function, here `multiply` is a variable with a function type annotation. The arrow function `(a, b) => a * b` assigned to `multiply` adheres to the type annotation.
+
+Type annotations provide clarity to your code and enhance the TypeScript compiler's ability to catch potential type-related errors during development.
+
+Note: In some cases, TypeScript can infer the types automatically, and explicit type annotations may not be necessary. However, providing explicit type annotations is often considered good practice for better code documentation and maintainability.
