@@ -128,3 +128,39 @@ In TypeScript, you can use type annotations with anonymous and arrow functions t
 Type annotations provide clarity to your code and enhance the TypeScript compiler's ability to catch potential type-related errors during development.
 
 Note: In some cases, TypeScript can infer the types automatically, and explicit type annotations may not be necessary. However, providing explicit type annotations is often considered good practice for better code documentation and maintainability.
+******************************************************
+## Data Types - Type Alias
+In TypeScript, a type alias is a way to create a custom name for a type. It allows you to define complex types or to give a descriptive name to existing types, making your code more readable and maintainable.
+
+Here's how you can create a type alias:
+
+```typescript
+// Type alias for a string or number
+type ID = string | number;
+
+// Type alias for a user object
+type User = {
+  id: ID;
+  username: string;
+  email: string;
+};
+
+// Type alias for a function that accepts two numbers and returns a number
+type MathOperation = (a: number, b: number) => number;
+
+// Usage of the type aliases
+let userId: ID = 123;
+let user: User = { id: userId, username: "john_doe", email: "john@example.com" };
+
+let add: MathOperation = (a, b) => a + b;
+let result = add(10, 20);
+console.log(result); // Outputs: 30
+```
+
+In this example:
+
+- The `ID` type alias is defined as either a `string` or a `number`.
+- The `User` type alias is defined as an object with specific properties (`id`, `username`, and `email`).
+- The `MathOperation` type alias represents a function that takes two numbers and returns a number.
+
+Type aliases can be especially useful when dealing with complex types, union types, or when you want to give a more descriptive name to a type. They enhance the readability of your code and make it easier for others (and yourself) to understand the intended use of certain types.
