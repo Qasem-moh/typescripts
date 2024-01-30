@@ -55,3 +55,43 @@ In TypeScript, you can define optional and default parameters in a function. Her
    In this example, the `age` parameter has a default value of `30`. If you don't provide a value for `age` when calling the function, it will default to `30`.
 
 By using optional and default parameters, you can make your functions more flexible and accommodate different use cases without sacrificing type safety.
+
+
+*********************************
+## Function Rest Parameter
+In TypeScript, you can use a rest parameter to represent an indefinite number of parameters as an array. This allows you to work with a variable number of arguments in a function. The rest parameter is denoted by an ellipsis (`...`) followed by the parameter name.
+
+Here's an example of a function with a rest parameter:
+
+```typescript
+function sumNumbers(...numbers: number[]): number {
+  return numbers.reduce((total, num) => total + num, 0);
+}
+
+const result1 = sumNumbers(1, 2, 3, 4, 5);
+console.log(result1); // Outputs: 15
+
+const result2 = sumNumbers(10, 20, 30);
+console.log(result2); // Outputs: 60
+```
+
+In the `sumNumbers` function, the `...numbers` syntax allows you to pass any number of arguments, and TypeScript will treat them as an array of numbers. The function then uses the `reduce` method to sum up all the numbers.
+
+You can also combine rest parameters with other parameters:
+
+```typescript
+function greet(message: string, ...names: string[]): string {
+  const joinedNames = names.join(', ');
+  return `${message} ${joinedNames}!`;
+}
+
+const greeting1 = greet("Hello", "Alice", "Bob", "Charlie");
+console.log(greeting1); // Outputs: Hello Alice, Bob, Charlie!
+
+const greeting2 = greet("Hi");
+console.log(greeting2); // Outputs: Hi !
+```
+
+In the `greet` function, the `message` parameter is followed by the rest parameter `...names`. This allows you to provide a message followed by an arbitrary number of names.
+
+Rest parameters provide flexibility and allow you to work with functions that can handle different numbers of arguments without explicitly specifying all the parameters.
