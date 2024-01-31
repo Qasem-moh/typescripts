@@ -203,3 +203,113 @@ let readonlyTuple: readonly [string, number] = ['Alice', 25];
 ```
 
 The `readonly` modifier prevents any modification of the tuple elements after initialization.
+**************************************
+## Data Types - Void And Never
+In TypeScript, `void` and `never` are two distinct data types with different use cases.
+
+1. **Void:**
+   - The `void` type represents the absence of any type. It is commonly used as the return type of functions that do not return any value.
+   - Variables of type `void` can only be assigned `undefined` or `null`.
+   - Functions with a `void` return type are expected to complete execution without returning a value.
+
+   ```typescript
+   function logMessage(message: string): void {
+     console.log(message);
+   }
+
+   let result: void = undefined; // valid
+   // let error: void = 10; // Error: Type '10' is not assignable to type 'void'.
+   ```
+
+2. **Never:**
+   - The `never` type represents values that never occur. It is often used as the return type of functions that never return (e.g., functions that throw exceptions or have infinite loops).
+   - It is also used as the inferred return type for functions that always throw exceptions or for functions that contain unconditional loops.
+
+   ```typescript
+   function throwError(message: string): never {
+     throw new Error(message);
+   }
+
+   function infiniteLoop(): never {
+     while (true) {
+       // Infinite loop
+     }
+   }
+   ```
+
+   The `never` type is a subtype of every type, which means that you can use `never` where a value is expected to never occur.
+
+   ```typescript
+   let unreachable: never;
+   // unreachable = 10; // Error: Type '10' is not assignable to type 'never'.
+   ```
+
+In summary:
+- Use `void` for functions that do not return a value.
+- Use `never` for functions that never return or for values that never occur.
+
+***********************
+
+## Data Types - Enums
+In TypeScript, an enum (short for enumeration) is a way to give more friendly names to a set of numeric values. Enums allow you to define a set of named constants representing discrete values. Here's an example:
+
+```typescript
+// Numeric Enum
+enum Direction {
+  Up,
+  Down,
+  Left,
+  Right,
+}
+
+let playerDirection: Direction = Direction.Up;
+
+if (playerDirection === Direction.Up) {
+  console.log("Player is moving upward.");
+}
+
+// String Enum
+enum Color {
+  Red = 'RED',
+  Green = 'GREEN',
+  Blue = 'BLUE',
+}
+
+let selectedColor: Color = Color.Red;
+
+if (selectedColor === Color.Red) {
+  console.log("The selected color is red.");
+}
+```
+
+In this example:
+
+- The `Direction` enum assigns numeric values by default, starting from `0`. If you don't specify values, TypeScript assigns incremental numeric values.
+- The `Color` enum assigns string values explicitly. String enums are useful when you want to have more control over the values and provide more meaningful names.
+
+Enums can also be used with both numeric and string values simultaneously:
+
+```typescript
+enum Result {
+  Success = 0,
+  Failure = 'FAILURE',
+}
+
+let operationResult: Result = Result.Success;
+```
+
+Enums are helpful when you have a set of related constants, providing a way to make the code more readable and maintainable. They help prevent the use of arbitrary numeric or string values, reducing the chances of errors in your code. Additionally, enums in TypeScript can be used in reverse mapping, where you can get the name of an enum member from its value.
+
+```typescript
+enum Direction {
+  Up,
+  Down,
+  Left,
+  Right,
+}
+
+let directionName: string = Direction[0]; // Gets the name "Up" based on the numeric value
+console.log(directionName); // Outputs: Up
+```
+
+Enums in TypeScript offer a convenient way to work with a predefined set of values and improve the clarity of your code.
