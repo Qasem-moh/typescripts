@@ -313,3 +313,148 @@ console.log(directionName); // Outputs: Up
 ```
 
 Enums in TypeScript offer a convenient way to work with a predefined set of values and improve the clarity of your code.
+*********************************************************************
+## Data Types - Type Assertions
+In TypeScript, type assertions are a way to tell the compiler that you know more about the type of a value than it does. It is a mechanism to override the default inference or static typing of the TypeScript compiler. Type assertions do not perform any runtime checking or validation; they are simply a way to inform the compiler about the expected type.
+
+There are two syntaxes for type assertions in TypeScript:
+
+1. **Angle Bracket Syntax:**
+   ```typescript
+   let value: any = "Hello, TypeScript!";
+   let length: number = (value as string).length;
+
+   // Alternatively
+   // let length: number = (<string>value).length;
+   ```
+
+2. **As Keyword Syntax:**
+   ```typescript
+   let value: any = "Hello, TypeScript!";
+   let length: number = (value as string).length;
+
+   // Alternatively
+   // let length: number = (value as string).length;
+   ```
+
+In these examples, `value` is of type `any`, and we use a type assertion to tell TypeScript that we are treating `value` as a `string`. This allows us to access properties or methods specific to the `string` type, such as `length`.
+
+It's important to note that type assertions should be used with caution, as they essentially tell the TypeScript compiler to trust your judgment. If the actual type of the value at runtime is not as expected, you might encounter runtime errors.
+
+Type assertions are commonly used when:
+
+- Migrating from JavaScript to TypeScript, and the type information is not fully available.
+- Working with values that have a broader type (`any`) and you want to narrow down the type for a specific operation.
+
+It's recommended to use other features of TypeScript, such as proper type annotations and interfaces, whenever possible, as they provide stronger guarantees and better maintainability. Type assertions should be used sparingly and only when necessary.
+**************************************************
+## Data Types - Union And Intersection Type
+In TypeScript, union types and intersection types are powerful features that allow you to create more flexible and expressive type definitions.
+
+### Union Types:
+
+A union type allows a variable to have multiple types. It is represented using the `|` (pipe) symbol.
+
+```typescript
+// Union type
+let result: string | number;
+
+result = "success";
+console.log(result.length); // Valid, as 'result' is of type 'string'
+
+result = 42;
+console.log(result.toFixed(2)); // Valid, as 'result' is of type 'number'
+```
+
+In this example, `result` can be either a `string` or a `number`.
+
+### Intersection Types:
+
+An intersection type combines multiple types into a single type. It is represented using the `&` (ampersand) symbol.
+
+```typescript
+// Intersection type
+type Employee = {
+  name: string;
+  role: string;
+};
+
+type ID = {
+  id: number;
+};
+
+type EmployeeWithID = Employee & ID;
+
+let employee: EmployeeWithID = {
+  name: "John Doe",
+  role: "Developer",
+  id: 123,
+};
+```
+
+In this example, `EmployeeWithID` is an intersection type that combines the properties of `Employee` and `ID`. The resulting type `EmployeeWithID` must have both `name`, `role`, and `id` properties.
+
+### Using Union and Intersection Together:
+
+You can also use union and intersection types together to create complex type definitions.
+
+```typescript
+type Result = { success: true } | { error: string };
+let outcome: Result;
+
+outcome = { success: true };
+console.log(outcome.success); // Valid
+
+outcome = { error: "Something went wrong" };
+console.log(outcome.error); // Valid
+```
+
+In this example, `Result` is a union type that can represent either a success or an error. Each alternative in the union has different properties.
+
+Union and intersection types provide a powerful way to model a wide range of scenarios and create flexible and precise type definitions in TypeScript.
+********************************************************
+## Type Annotations With Object
+
+In TypeScript, you can use type annotations to explicitly specify the shape of an object, including the types of its properties. Here's an example:
+
+```typescript
+// Type annotation for an object
+let user: {
+  id: number;
+  username: string;
+  email: string;
+  isAdmin: boolean;
+};
+
+// Usage
+user = {
+  id: 1,
+  username: "john_doe",
+  email: "john@example.com",
+  isAdmin: false,
+};
+```
+
+In this example, the `user` object is annotated with a type that defines four properties: `id` (number), `username` (string), `email` (string), and `isAdmin` (boolean). This provides static type checking, and TypeScript will raise an error if you try to assign an object with a different structure.
+
+You can also use type aliases to create reusable type annotations:
+
+```typescript
+// Type alias for a user object
+type User = {
+  id: number;
+  username: string;
+  email: string;
+  isAdmin: boolean;
+};
+
+// Usage
+let newUser: User = {
+  id: 2,
+  username: "jane_smith",
+  email: "jane@example.com",
+  isAdmin: true,
+};
+```
+
+Type annotations with objects become especially valuable when dealing with complex structures or when defining interfaces for APIs. They help catch errors early in the development process and improve code maintainability.
