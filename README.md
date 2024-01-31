@@ -164,3 +164,42 @@ In this example:
 - The `MathOperation` type alias represents a function that takes two numbers and returns a number.
 
 Type aliases can be especially useful when dealing with complex types, union types, or when you want to give a more descriptive name to a type. They enhance the readability of your code and make it easier for others (and yourself) to understand the intended use of certain types.
+*********************
+## Data Types - Tuple
+In TypeScript, a tuple is a data type that represents an ordered collection of elements, each with a specific type. Tuples allow you to express an array where the order and types of the elements are fixed.
+
+Here's an example of a tuple:
+
+```typescript
+// Declare a tuple type
+let person: [string, number, boolean];
+
+// Initialize a tuple
+person = ['John', 30, true];
+
+// Access elements by index
+let name: string = person[0];
+let age: number = person[1];
+let isAdult: boolean = person[2];
+
+console.log(name);    // Outputs: John
+console.log(age);     // Outputs: 30
+console.log(isAdult); // Outputs: true
+```
+
+In this example:
+
+- The `person` tuple is declared with a type annotation `[string, number, boolean]`, indicating that it should have three elements of types `string`, `number`, and `boolean`, respectively.
+- The tuple is then initialized with specific values, and each element can be accessed by its index.
+- The variables `name`, `age`, and `isAdult` are assigned the values from the tuple, and their types are inferred accordingly.
+
+Tuples are useful when you want to represent a fixed-size collection of elements with different types in a specific order. They provide a level of type safety and can be particularly handy when working with functions that return multiple values.
+
+Starting from TypeScript 3.1, you can also use the `readonly` modifier to create immutable tuples:
+
+```typescript
+let readonlyTuple: readonly [string, number] = ['Alice', 25];
+// readonlyTuple[0] = 'Bob'; // Error: Index signature in type 'readonly [string, number]' prohibits assignment to '0'.
+```
+
+The `readonly` modifier prevents any modification of the tuple elements after initialization.
