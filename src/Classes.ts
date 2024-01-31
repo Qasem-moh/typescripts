@@ -6,8 +6,8 @@ class User {
     constructor(username:string, salary:number) {
         this.u = username;
         this.s = salary;
-        this.msg = function () {
-            return `hello ${this.u} your salary is ${this.s}`;
+        this.msg = ()=> {
+            return `hello ${this.u} your salary's ${this.s}`;
         }
     }
 
