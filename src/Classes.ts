@@ -3,7 +3,7 @@ class User {
     s: number
     msg: () => string;
 
-    constructor(username, salary) {
+    constructor(username:string, salary:number) {
         this.u = username;
         this.s = salary;
         this.msg = function () {
@@ -17,3 +17,7 @@ class User {
 }
 
 let userOne = new User("Qasem", 1200)
+console.log(userOne.u)
+console.log(userOne.s)
+console.log(userOne.msg())
+console.log(userOne.sayMsg())
