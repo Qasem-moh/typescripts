@@ -458,3 +458,47 @@ let newUser: User = {
 ```
 
 Type annotations with objects become especially valuable when dealing with complex structures or when defining interfaces for APIs. They help catch errors early in the development process and improve code maintainability.
+********************************************************
+## Interface Method And Parameters
+In TypeScript, interfaces can also define methods and their parameters. Here's an example:
+
+```typescript
+// Interface declaration with a method
+interface Calculator {
+  add(a: number, b: number): number;
+  subtract(a: number, b: number): number;
+}
+
+// Implementation of the interface
+let basicCalculator: Calculator = {
+  add: (a, b) => a + b,
+  subtract: (a, b) => a - b,
+};
+
+// Usage
+let sum = basicCalculator.add(5, 3);       // Result: 8
+let difference = basicCalculator.subtract(8, 3);  // Result: 5
+```
+
+In this example, the `Calculator` interface declares two methods: `add` and `subtract`. Each method specifies the parameter types and the return type. The `basicCalculator` object is then declared to implement the `Calculator` interface by providing implementations for both methods.
+
+Interfaces with methods are especially useful when you want to enforce a specific structure for objects that represent classes or components. They help define contracts for how different parts of your code should interact.
+
+You can also extend interfaces to create more specialized interfaces:
+
+```typescript
+interface AdvancedCalculator extends Calculator {
+  multiply(a: number, b: number): number;
+}
+
+let advancedCalculator: AdvancedCalculator = {
+  add: (a, b) => a + b,
+  subtract: (a, b) => a - b,
+  multiply: (a, b) => a * b,
+};
+```
+
+In this example, `AdvancedCalculator` extends the `Calculator` interface and adds a new method `multiply`. The `advancedCalculator` object implements both the `Calculator` and `AdvancedCalculator` interfaces.
+
+Using interfaces for method signatures helps in documenting and enforcing the expected structure of objects and functions in your TypeScript code.
+***********************************************************
