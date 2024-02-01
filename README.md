@@ -1009,3 +1009,4 @@ When creating instances of the `Box` class, you specify the type you want to use
 
 Generics in classes provide flexibility and type safety by allowing you to use the same class blueprint for different data types. The type information is maintained throughout the usage of the class, ensuring that operations on the contents are type-correct.
 *********************************************
+## Generics And Interfaces
