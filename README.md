@@ -581,3 +581,57 @@ In this example, the `Shape` interface is initially declared with a `color` prop
    ```
 
 Reopening interfaces in TypeScript provides a way to extend and modify type definitions, making your code more flexible and accommodating evolving requirements.
+**********************************************************
+## Class Get And Set Accessors
+In TypeScript, you can use `get` and `set` accessors to control the access and modification of class properties. These accessors allow you to define custom behavior when getting or setting the value of a property. Here's an example:
+
+```typescript
+class Circle {
+  private _radius: number;
+
+  constructor(radius: number) {
+    this._radius = radius;
+  }
+
+  // Getter accessor
+  get radius(): number {
+    return this._radius;
+  }
+
+  // Setter accessor
+  set radius(newRadius: number) {
+    if (newRadius >= 0) {
+      this._radius = newRadius;
+    } else {
+      console.log('Radius cannot be negative.');
+    }
+  }
+
+  // Method to calculate area
+  calculateArea(): number {
+    return Math.PI * this._radius ** 2;
+  }
+}
+
+// Usage
+let myCircle = new Circle(5);
+console.log(myCircle.radius); // Access the radius through the getter
+console.log(myCircle.calculateArea()); // Outputs: 78.53981633974483
+
+// Modify the radius through the setter
+myCircle.radius = 8;
+console.log(myCircle.radius); // Outputs: 8
+
+// Try to set a negative radius (the setter will handle it)
+myCircle.radius = -2; // Outputs: Radius cannot be negative.
+console.log(myCircle.radius); // Outputs: 8 (unchanged)
+```
+
+In this example:
+
+- The `Circle` class has a private property `_radius`, and the public property `radius` is exposed using a getter and a setter.
+- The `get` accessor allows you to retrieve the value of `_radius` as if it were a public property.
+- The `set` accessor allows you to control the logic when setting the value of `radius`. In this case, it ensures that the radius cannot be negative.
+- The `calculateArea` method calculates the area of the circle based on the current radius.
+
+Using `get` and `set` accessors provides a way to encapsulate the internal state of a class while allowing controlled access and modification. It also allows you to add validation or additional logic when getting or setting property values.
