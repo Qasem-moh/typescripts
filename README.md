@@ -676,3 +676,104 @@ In this example:
 Static members are useful for functionality that is related to the class as a whole rather than individual instances. They can be accessed without creating an instance of the class, making them convenient for utility methods or constants associated with the class.
 
 Keep in mind that static members cannot access instance-specific members (properties or methods) directly. If you need to work with instance-specific data, use instance members. If the functionality is not tied to a specific instance, consider using static members for better organization and encapsulation.
+***************************************************************
+## Class Implements Interface
+In TypeScript, a class can implement an interface. This means that the class agrees to provide implementations for all the members (properties and methods) declared in the interface. Here's an example:
+
+```typescript
+// Interface declaration
+interface Shape {
+  area(): number;
+  color: string;
+}
+
+// Class implementing the interface
+class Circle implements Shape {
+  // Properties from the interface
+  color: string;
+  private _radius: number;
+
+  // Constructor
+  constructor(color: string, radius: number) {
+    this.color = color;
+    this._radius = radius;
+  }
+
+  // Method from the interface
+  area(): number {
+    return Math.PI * this._radius ** 2;
+  }
+}
+
+// Usage
+let myCircle: Shape = new Circle('red', 5);
+console.log(myCircle.color); // Access the property from the interface
+console.log(myCircle.area()); // Access the method from the interface
+```
+
+In this example:
+
+- The `Shape` interface declares a method `area` and a property `color`.
+- The `Circle` class implements the `Shape` interface by providing implementations for the `area` method and the `color` property.
+- The `Circle` class has its own private property `_radius` and a constructor that initializes the properties.
+
+When a class implements an interface, it must provide concrete implementations for all the members declared in the interface. This ensures that instances of the class adhere to the contract specified by the interface.
+
+Interfaces are useful for defining contracts that can be implemented by multiple classes, allowing for better code organization, reusability, and maintenance.
+*****************************************************************
+## Abstract Classes And Members
+In TypeScript, abstract classes and abstract members provide a way to define blueprints for other classes. An abstract class cannot be instantiated directly, and it may contain abstract methods that must be implemented by any concrete (non-abstract) subclass. Here's an example:
+
+```typescript
+// Abstract class
+abstract class Shape {
+  color: string;
+
+  constructor(color: string) {
+    this.color = color;
+  }
+
+  // Abstract method
+  abstract area(): number;
+
+  // Concrete method
+  display(): void {
+    console.log(`This is a ${this.color} shape.`);
+  }
+}
+
+// Concrete subclass
+class Circle extends Shape {
+  private _radius: number;
+
+  constructor(color: string, radius: number) {
+    super(color);
+    this._radius = radius;
+  }
+
+  // Implementation of the abstract method
+  area(): number {
+    return Math.PI * this._radius ** 2;
+  }
+}
+
+// Usage
+let myCircle: Shape = new Circle('red', 5);
+console.log(myCircle.area()); // Access the method from the abstract class
+myCircle.display(); // Access the concrete method from the abstract class
+```
+
+In this example:
+
+- The `Shape` abstract class has a property `color`, a constructor, an abstract method `area`, and a concrete method `display`.
+- The `Circle` class extends the `Shape` abstract class and provides an implementation for the abstract method `area`.
+- The `myCircle` instance is declared as the abstract type `Shape`, and it is instantiated with the concrete class `Circle`.
+
+Key points:
+
+- Abstract classes are marked with the `abstract` keyword.
+- Abstract methods are declared using the `abstract` keyword in the abstract class and must be implemented by any concrete subclass.
+- Abstract classes cannot be instantiated directly; they serve as blueprints for concrete classes.
+- Concrete classes that extend an abstract class must provide implementations for all abstract methods.
+
+Abstract classes are useful when you want to define a common structure for a group of related classes while allowing some flexibility for specific implementations. They help enforce a consistent interface across different subclasses.
