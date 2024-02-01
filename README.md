@@ -1010,3 +1010,65 @@ When creating instances of the `Box` class, you specify the type you want to use
 Generics in classes provide flexibility and type safety by allowing you to use the same class blueprint for different data types. The type information is maintained throughout the usage of the class, ensuring that operations on the contents are type-correct.
 *********************************************
 ## Generics And Interfaces
+Generics can be used with interfaces in TypeScript to create flexible and reusable components that work with various data types. Here's an example of using generics with interfaces:
+
+```typescript
+// Generic interface
+interface Box<T> {
+  contents: T;
+  getContents(): T;
+  setContents(newContents: T): void;
+}
+
+// Implementation for a string-based box
+class StringBox implements Box<string> {
+  private contents: string;
+
+  constructor(initialContents: string) {
+    this.contents = initialContents;
+  }
+
+  getContents(): string {
+    return this.contents;
+  }
+
+  setContents(newContents: string): void {
+    this.contents = newContents;
+  }
+}
+
+// Implementation for a number-based box
+class NumberBox implements Box<number> {
+  private contents: number;
+
+  constructor(initialContents: number) {
+    this.contents = initialContents;
+  }
+
+  getContents(): number {
+    return this.contents;
+  }
+
+  setContents(newContents: number): void {
+    this.contents = newContents;
+  }
+}
+
+// Usage
+let stringBox: Box<string> = new StringBox("Hello, generics!");
+console.log(stringBox.getContents()); // Outputs: Hello, generics!
+
+let numberBox: Box<number> = new NumberBox(42);
+console.log(numberBox.getContents()); // Outputs: 42
+
+// Attempting to assign a different type will result in a compile-time error
+// let errorBox: Box<boolean> = new StringBox(true); // Error: Type 'boolean' is not assignable to type 'string'.
+```
+
+In this example:
+
+- The `Box` interface is declared with a generic type parameter `T`.
+- The interface defines properties and methods that work with the generic type `T`.
+- The `StringBox` and `NumberBox` classes implement the `Box` interface with specific type arguments (`string` and `number`).
+
+Using generics with interfaces allows you to create a blueprint for a component that can work with various data types while maintaining type safety. It provides a level of abstraction that allows you to define a common structure for different implementations. This is especially useful when designing reusable and flexible components in your TypeScript projects.
