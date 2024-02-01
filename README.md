@@ -635,3 +635,44 @@ In this example:
 - The `calculateArea` method calculates the area of the circle based on the current radius.
 
 Using `get` and `set` accessors provides a way to encapsulate the internal state of a class while allowing controlled access and modification. It also allows you to add validation or additional logic when getting or setting property values.
+***********************************************************
+## Class Static Members
+In TypeScript, static members of a class are properties or methods that belong to the class itself rather than instances of the class. They are accessed using the class name rather than an instance of the class. Here's an example:
+
+```typescript
+class MathOperations {
+  // Static property
+  static pi: number = 3.14159;
+
+  // Static method
+  static multiply(x: number, y: number): number {
+    return x * y;
+  }
+
+  // Static method using the static property
+  static calculateCircleArea(radius: number): number {
+    return this.pi * radius ** 2;
+  }
+}
+
+// Accessing static property
+console.log(MathOperations.pi); // Outputs: 3.14159
+
+// Calling static method
+let result = MathOperations.multiply(5, 3);
+console.log(result); // Outputs: 15
+
+// Calling another static method using the static property
+let area = MathOperations.calculateCircleArea(4);
+console.log(area); // Outputs: 50.26544
+```
+
+In this example:
+
+- The `pi` property and the `multiply` method are declared as static members of the `MathOperations` class.
+- Static members are accessed using the class name (`MathOperations.pi`, `MathOperations.multiply()`).
+- The `calculateCircleArea` method uses the static property `pi` to calculate the area of a circle.
+
+Static members are useful for functionality that is related to the class as a whole rather than individual instances. They can be accessed without creating an instance of the class, making them convenient for utility methods or constants associated with the class.
+
+Keep in mind that static members cannot access instance-specific members (properties or methods) directly. If you need to work with instance-specific data, use instance members. If the functionality is not tied to a specific instance, consider using static members for better organization and encapsulation.
