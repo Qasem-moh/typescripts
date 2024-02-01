@@ -777,3 +777,56 @@ Key points:
 - Concrete classes that extend an abstract class must provide implementations for all abstract methods.
 
 Abstract classes are useful when you want to define a common structure for a group of related classes while allowing some flexibility for specific implementations. They help enforce a consistent interface across different subclasses.
+******************************************************************
+## Polymorphism And Method Override
+In object-oriented programming, polymorphism is the ability of objects of different types to be treated as objects of a common type. Method overriding is a key mechanism that enables polymorphism. In TypeScript, you can achieve method overriding by declaring a method in a subclass with the same signature as a method in its superclass. Here's an example:
+
+```typescript
+// Base class
+class Animal {
+  speak(): void {
+    console.log('Animal makes a sound');
+  }
+}
+
+// Subclass with method override
+class Dog extends Animal {
+  speak(): void {
+    console.log('Dog barks');
+  }
+}
+
+// Subclass with method override
+class Cat extends Animal {
+  speak(): void {
+    console.log('Cat meows');
+  }
+}
+
+// Function that takes an Animal and calls its speak method
+function makeAnimalSpeak(animal: Animal): void {
+  animal.speak();
+}
+
+// Usage
+const myDog: Dog = new Dog();
+const myCat: Cat = new Cat();
+
+makeAnimalSpeak(myDog); // Outputs: Dog barks
+makeAnimalSpeak(myCat); // Outputs: Cat meows
+```
+
+In this example:
+
+- The `Animal` class has a method `speak`.
+- The `Dog` and `Cat` classes extend the `Animal` class and override the `speak` method with their own implementations.
+- The `makeAnimalSpeak` function takes an `Animal` as a parameter and calls its `speak` method.
+
+Key points:
+
+- The `speak` method in the `Animal` class serves as a common interface for all subclasses.
+- The `speak` method is overridden in both the `Dog` and `Cat` subclasses, providing specific implementations for each type of animal.
+- When `makeAnimalSpeak` is called with instances of `Dog` and `Cat`, the overridden `speak` method of the respective subclass is invoked based on the actual type of the object.
+
+This is an example of runtime polymorphism, where the behavior is determined at runtime based on the actual type of the object. TypeScript supports polymorphism through method overriding, making it a powerful feature for building flexible and extensible object-oriented code.
+*********************************************************************************
