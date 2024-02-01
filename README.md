@@ -968,3 +968,44 @@ In this example, the `KeyValuePair` interface is generic and has two type parame
 Using generics with multiple types allows you to create flexible and reusable components that can work with a variety of data types while maintaining type safety.
 ***************************************************************
 ## Generics Classes
+Generics in TypeScript can be applied to classes, allowing you to create reusable classes that work with different types. Here's an example of a generic class:
+
+```typescript
+// Generic class
+class Box<T> {
+  private contents: T;
+
+  constructor(initialContents: T) {
+    this.contents = initialContents;
+  }
+
+  getContents(): T {
+    return this.contents;
+  }
+
+  setContents(newContents: T): void {
+    this.contents = newContents;
+  }
+}
+
+// Usage
+let stringBox: Box<string> = new Box("Hello, generics!");
+console.log(stringBox.getContents()); // Outputs: Hello, generics!
+
+let numberBox: Box<number> = new Box(42);
+console.log(numberBox.getContents()); // Outputs: 42
+
+// Attempting to assign a different type will result in a compile-time error
+// let errorBox: Box<boolean> = new Box(true); // Error: Type 'boolean' is not assignable to type 'string'.
+```
+
+In this example:
+
+- The `Box` class is declared with a generic type parameter `T`.
+- The `contents` property, which represents the content of the box, is of type `T`.
+- The constructor and methods (`getContents` and `setContents`) work with the generic type `T`.
+
+When creating instances of the `Box` class, you specify the type you want to use with the generic class by providing the type argument (`<string>`, `<number>`, etc.).
+
+Generics in classes provide flexibility and type safety by allowing you to use the same class blueprint for different data types. The type information is maintained throughout the usage of the class, ensuring that operations on the contents are type-correct.
+*********************************************
