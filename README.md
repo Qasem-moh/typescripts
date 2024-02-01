@@ -905,3 +905,66 @@ console.log(stringStack.pop()); // Outputs: banana
 In this example, the `Stack` class is defined as a generic class that can be instantiated with different types (`number` and `string`).
 
 Generics provide a powerful way to write reusable and type-safe code that works with various data types. They are widely used in libraries and frameworks to create flexible and generic components.
+*********************************************************
+## Generics Multiple Types
+In TypeScript, you can use generics with multiple types by specifying multiple type parameters. This allows you to create functions, classes, or interfaces that work with more than one type. Here's an example:
+
+### Generic Function with Multiple Types:
+
+```typescript
+// Generic function with multiple types
+function displayPair<T, U>(first: T, second: U): void {
+  console.log(`Pair: ${first}, ${second}`);
+}
+
+// Usage
+displayPair("apple", 42); // Outputs: Pair: apple, 42
+displayPair(3.14, true);   // Outputs: Pair: 3.14, true
+```
+
+In this example, the `displayPair` function is generic and takes two parameters of different types (`T` and `U`). The types are specified when calling the function, allowing it to work with various combinations of types.
+
+### Generic Class with Multiple Types:
+
+```typescript
+// Generic class with multiple types
+class Pair<T, U> {
+  constructor(public first: T, public second: U) {}
+}
+
+// Usage
+let stringNumberPair: Pair<string, number> = new Pair("apple", 42);
+console.log(stringNumberPair.first);  // Outputs: apple
+console.log(stringNumberPair.second); // Outputs: 42
+
+let booleanStringPair: Pair<boolean, string> = new Pair(true, "orange");
+console.log(booleanStringPair.first);  // Outputs: true
+console.log(booleanStringPair.second); // Outputs: orange
+```
+
+In this example, the `Pair` class is generic and takes two type parameters (`T` and `U`). The types are specified when creating instances of the class.
+
+### Generic Interface with Multiple Types:
+
+```typescript
+// Generic interface with multiple types
+interface KeyValuePair<T, U> {
+  key: T;
+  value: U;
+}
+
+// Usage
+let numberStringPair: KeyValuePair<number, string> = { key: 42, value: "banana" };
+console.log(numberStringPair.key);   // Outputs: 42
+console.log(numberStringPair.value); // Outputs: banana
+
+let booleanBooleanPair: KeyValuePair<boolean, boolean> = { key: true, value: false };
+console.log(booleanBooleanPair.key);   // Outputs: true
+console.log(booleanBooleanPair.value); // Outputs: false
+```
+
+In this example, the `KeyValuePair` interface is generic and has two type parameters (`T` and `U`). Instances of the interface can be created with specific types for the key and value.
+
+Using generics with multiple types allows you to create flexible and reusable components that can work with a variety of data types while maintaining type safety.
+***************************************************************
+## Generics Classes
