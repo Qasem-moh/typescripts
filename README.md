@@ -830,3 +830,78 @@ Key points:
 
 This is an example of runtime polymorphism, where the behavior is determined at runtime based on the actual type of the object. TypeScript supports polymorphism through method overriding, making it a powerful feature for building flexible and extensible object-oriented code.
 *********************************************************************************
+## Generics Introduction
+Generics in TypeScript provide a way to create flexible and reusable components that can work with various data types. They allow you to write functions, classes, and interfaces that can work with any data type while preserving type safety.
+
+### Basic Example:
+
+Here's a simple example of a generic function:
+
+```typescript
+// Generic function that echoes the input
+function echo<T>(value: T): T {
+  return value;
+}
+
+// Usage
+let result: string = echo("Hello, generics!");
+let numberResult: number = echo(42);
+```
+
+In this example:
+
+- The `echo` function is generic, denoted by the `<T>` syntax.
+- The function takes a parameter of type `T` and returns a value of the same type.
+- The function can be called with different types (`string` and `number` in this case), and TypeScript infers and maintains the correct types.
+
+### Using Generics with Arrays:
+
+Generics are often used with arrays to create reusable components:
+
+```typescript
+// Generic function to reverse an array
+function reverseArray<T>(array: T[]): T[] {
+  return array.reverse();
+}
+
+// Usage
+let numbers: number[] = [1, 2, 3, 4, 5];
+let reversedNumbers: number[] = reverseArray(numbers);
+
+let words: string[] = ["apple", "banana", "cherry"];
+let reversedWords: string[] = reverseArray(words);
+```
+
+### Using Generics with Classes:
+
+Generics can also be used with classes to create flexible data structures:
+
+```typescript
+// Generic class for a simple stack
+class Stack<T> {
+  private items: T[] = [];
+
+  push(item: T): void {
+    this.items.push(item);
+  }
+
+  pop(): T | undefined {
+    return this.items.pop();
+  }
+}
+
+// Usage
+let numberStack = new Stack<number>();
+numberStack.push(1);
+numberStack.push(2);
+console.log(numberStack.pop()); // Outputs: 2
+
+let stringStack = new Stack<string>();
+stringStack.push("apple");
+stringStack.push("banana");
+console.log(stringStack.pop()); // Outputs: banana
+```
+
+In this example, the `Stack` class is defined as a generic class that can be instantiated with different types (`number` and `string`).
+
+Generics provide a powerful way to write reusable and type-safe code that works with various data types. They are widely used in libraries and frameworks to create flexible and generic components.
